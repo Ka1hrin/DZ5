@@ -1,0 +1,144 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="images\32_pink_jpgs\01_Baby_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\02_Pale_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\03_Cotton_Candy.jpg" />
+    <None Remove="images\32_pink_jpgs\04_Ballet_Slipper.jpg" />
+    <None Remove="images\32_pink_jpgs\05_Blush_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\06_Dusty_Rose.jpg" />
+    <None Remove="images\32_pink_jpgs\07_Rose_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\08_Hot_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\09_Shocking_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\10_Fuchsia.jpg" />
+    <None Remove="images\32_pink_jpgs\11_Magenta_Rose.jpg" />
+    <None Remove="images\32_pink_jpgs\12_Raspberry_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\13_Cerise.jpg" />
+    <None Remove="images\32_pink_jpgs\14_Carnation_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\15_Salmon_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\16_Coral_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\17_Watermelon_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\18_Punch_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\19_Strawberry_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\20_Peachy_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\21_Mauve_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\22_Lilac_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\23_Orchid_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\24_Misty_Rose.jpg" />
+    <None Remove="images\32_pink_jpgs\25_Antique_Rose.jpg" />
+    <None Remove="images\32_pink_jpgs\26_Rosewood_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\27_Berry_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\28_Wine_Pink.jpg" />
+    <None Remove="images\32_pink_jpgs\29_Dark_Magenta.jpg" />
+    <None Remove="images\32_pink_jpgs\30_Mulberry.jpg" />
+    <None Remove="images\32_pink_jpgs\31_Persian_Rose.jpg" />
+    <None Remove="images\32_pink_jpgs\32_Deep_Rose.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="images\32_pink_jpgs\01_Baby_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\02_Pale_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\03_Cotton_Candy.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\04_Ballet_Slipper.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\05_Blush_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\06_Dusty_Rose.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\07_Rose_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\08_Hot_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\09_Shocking_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\10_Fuchsia.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\11_Magenta_Rose.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\12_Raspberry_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\13_Cerise.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\14_Carnation_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\15_Salmon_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\16_Coral_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\17_Watermelon_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\18_Punch_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\19_Strawberry_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\20_Peachy_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\21_Mauve_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\22_Lilac_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\23_Orchid_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\24_Misty_Rose.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\25_Antique_Rose.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\26_Rosewood_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\27_Berry_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\28_Wine_Pink.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\29_Dark_Magenta.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\30_Mulberry.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\31_Persian_Rose.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\32_pink_jpgs\32_Deep_Rose.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

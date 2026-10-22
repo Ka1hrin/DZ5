@@ -1,6 +1,7 @@
-﻿using System.IO;
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace DZ5
@@ -20,7 +21,9 @@ namespace DZ5
             Task2();
             Task3();
 
-            HomeWork1();
+            HomeWork1(filePath);
+            HomeWork2();
+            HomeWork3();
         }
 
         static void Task1(string filePath)
@@ -42,9 +45,9 @@ namespace DZ5
 
         #region 
         ///<summary>
-        ///Метод, который считает количество гласных и согласных в тексте
+        ///Метод, который считает количество гласных и согласных в тексте и принимает массивы
         ///</summary>
-        static (int vowels, int consonants) CountLetters(char[] text)
+        private static (int vowels, int consonants) CountLetters(char[] text)
         {
             var vowels = 0;
             var consonants = 0;
@@ -207,7 +210,145 @@ namespace DZ5
         }
         #endregion
 
-        private static void HomeWork1()
+        private static void HomeWork1(string filePath)
+        {
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine($"\"Ошибка: Файл не найден по пути: {filePath}");
+                return;
+            }
+            var readedText = File.ReadAllText(filePath);
+
+            List<char> list = new List<char>();
+
+            foreach ( var item in readedText )
+            {
+                list.Add(item);
+            }
+
+            (int vowels, int consonants) = CountLetters(list);
+
+            Console.WriteLine($"Количество гласных: {vowels}\nКоличество согласных: {consonants}\n");
+        }
+
+        #region
+        ///<summary>
+        ///Метод, который считает гласные и согласные и принимает коллекции
+        ///перегрузка
+        ///</summary>
+        private static (int vowels, int consonants) CountLetters(List<char> list)
+        {
+            var vowels = 0;
+            var consonants = 0;
+
+            var vowelsString = "уеыаёоэяию";
+ 
+            foreach (char lett in list)
+            {
+                if (char.IsLetter(lett))
+                {
+                    if (vowelsString.Contains(char.ToLower(lett)))
+                        vowels++;
+                    else
+                        consonants++;
+                }
+            }
+
+            return (vowels, consonants);
+        }
+           
+        #endregion
+
+        private static void HomeWork2()
+        {
+            Console.WriteLine("Количество столбцов первой матрицы должно быть равно количеству строк второй");
+
+            int str1 = Helper.ReadInt("Введите количество строк первой матрицы: ");
+            int column1 = Helper.ReadInt("Введите количество столбцов первой матрицы: ");
+
+            int str2 = Helper.ReadInt("Введите количество строк второй матрицы: ");
+            int column2 = Helper.ReadInt("Введите количество столбцов второй матрицы: ");
+
+            int min = Helper.ReadInt("Введите минимальное значение ячейки матрицы");
+            int max = Helper.ReadInt("Введите максимальное значение ячейки матрицы");
+
+            LinkedList<LinkedList<int>> matrix1 = RandomMatrix(str1, column1, min, max);
+            LinkedList<LinkedList<int>> matrix2 = RandomMatrix(str2, column2, min, max);
+        }
+
+        #region
+        ///<summary>
+        ///Сощдает и заполняет случайными числами матрицу
+        ///перегрузка
+        ///</summary>
+        private static LinkedList<LinkedList<int>> RandomMatrix(int strs, int column, int min, int max)
+        {
+            //Создаем внешний список строк
+            LinkedList<LinkedList<int>> matrix = new LinkedList<LinkedList<int>>();
+
+            Random random = new Random();
+
+            for (int i = 0; i < strs; i++)
+            {
+                //С помощью цикла присоединяем к внешнему списку внутренний
+                LinkedList<int> str = new LinkedList<int>();
+
+                for (int j = 0; j < column; j++)
+                {
+                    //Добавляем случайное число в конец строки
+                    str.AddLast(random.Next(min, max + 1));
+                }
+                //Добавляем строку в матрицу
+                matrix.AddLast(str);
+            }
+
+            return matrix;
+        }
+
+        ///<summary>
+        ///Метод, который печатает матрицу (коллекция)
+        ///перегрузка
+        ///</summary>
+        private static void PrintMatrix(LinkedList<LinkedList<int>> matrix)
+        {
+            //Проходит по каждой строке из коллекции
+            foreach (LinkedList<int> str in matrix)
+            {
+                //Проходит по каждому значению строки
+                foreach (int item in str)
+                {
+                    Console.Write($"{item} ");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        ///<summary>
+        ///Метод, который
+        ///</summary>
+
+        ///<summary>
+        ///Метод, который умножает матрицы (коллекции)
+        ///перегрузка
+        ///</summary>
+        private static LinkedList<LinkedList<int>> MultMatrix(LinkedList<LinkedList<int>> matrix1, LinkedList<LinkedList<int>> matrix2, int strs, int columns)
+        {
+            var matrix = new LinkedList<LinkedList<int>>();
+
+            for (int i = 0; i < strs; i++)
+            {
+                var str = new LinkedList<int>();
+                for (int j = 0; j < columns; j++)
+                {
+                    str.AddLast(0); // Заполняем нулями
+                }
+                matrix.AddLast(str);
+
+            }
+        }
+        #endregion
+
+        private static void HomeWork3()
         {
 
         }
