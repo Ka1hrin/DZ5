@@ -203,8 +203,18 @@ namespace PDF5
         {
             Console.Write("Введите фамилию: ");
             string lastName = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(lastName))
+            {
+                Console.WriteLine("Ошибка: строка не может быть пустой!");
+                return;
+            }
             Console.Write("Введите имя: ");
             string firstName = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(firstName))
+            {
+                Console.WriteLine("Ошибка: строка не может быть пустой!");
+                return;
+            }
 
             string key = $"{lastName} {firstName}";
 
