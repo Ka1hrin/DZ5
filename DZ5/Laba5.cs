@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using static System.Net.Mime.MediaTypeNames;
 
 
 namespace DZ5
@@ -12,7 +10,7 @@ namespace DZ5
         static void Main()
         {
             //Laba5 - обозреватель кода - правая кнопка мыши на файл с текстом - свойства - копировать в выходной каталог: более позднюю версию - действие при сбоке: содержимое
-            string filePath = "Текс для номера 6.1\\testFile.txt";
+            string filePath = "Текст для номера 6.1\\testFile.txt";
 
             //на 2 уровня выше экзешника
             //для задания с файлом
@@ -22,7 +20,7 @@ namespace DZ5
             Task3();
 
             HomeWork1(filePath);
-            HomeWork2();
+            //Не успела(
             HomeWork3();
         }
 
@@ -31,7 +29,7 @@ namespace DZ5
             //Проверка файла на существование? 
             if (!File.Exists(filePath))
             {
-                Console.WriteLine($"\"Ошибка: Файл не найден по пути: {filePath}");
+                Console.WriteLine($"Ошибка: Файл не найден по пути: {filePath}");
                 return;
             }
             var readedText = File.ReadAllText(filePath);
@@ -82,8 +80,8 @@ namespace DZ5
             int str2 = Helper.ReadInt("Введите количество строк второй матрицы: ");
             int column2 = Helper.ReadInt("Введите количество столбцов второй матрицы: ");
 
-            int min = Helper.ReadInt("Введите минимальное значение ячейки матрицы");
-            int max = Helper.ReadInt("Введите максимальное значение ячейки матрицы");
+            int min = Helper.ReadInt("Введите минимальное значение ячейки матрицы: ");
+            int max = Helper.ReadInt("Введите максимальное значение ячейки матрицы: ");
 
             int[,] array1 = new int[str1, column1];
             int[,] array2 = new int[str2, column2];
@@ -91,12 +89,12 @@ namespace DZ5
             RandomMatrix(array1, str1, column1, min, max);
             RandomMatrix(array2, str2, column2, min, max);
 
-            PrintMatrix(array1);
-            PrintMatrix(array2);
+            PrintMatrix("Первая матрица", array1);
+            PrintMatrix("Вторая матрица", array2);
 
             int[,] result = MultMatrix(array1, array2);
 
-            PrintMatrix(result);
+            PrintMatrix("Произведение матриц", result);
 
         }
 
@@ -112,7 +110,7 @@ namespace DZ5
             {
                 for (int j = 0; j < column; j++) //заполняем цифру столбца
                 {
-                    matrix[i, j] = random.Next(min, max+1);
+                    matrix[i, j] = random.Next(min, max + 1);
                 }
             }
         }
@@ -120,9 +118,9 @@ namespace DZ5
         /// <summary>
         /// Метод печати матрицы
         /// </summary>
-        private static void PrintMatrix(int[,] matrix)
+        private static void PrintMatrix(string prompt, int[,] matrix)
         {
-
+            Console.WriteLine($"\n{prompt}");
             for (int i = 0; i < matrix.GetLength(0); i++) //заполняем цифру строки, matrix.GetLength(0) - выдает количество строк
             {
                 for (int j = 0; j < matrix.GetLength(1); j++) //заполняем цифру столбца
@@ -141,17 +139,17 @@ namespace DZ5
             //эту матрицу заполняем заначениями и возвращаем
             //Важно: новая матрица имеет количество строк 1 матрицы и количество столбцов 2
             int[,] matrix = new int[matrix1.GetLength(0), matrix2.GetLength(1)];
-            
+
             if (matrix1.GetLength(1) != matrix2.GetLength(0))
                 throw new ArgumentException("Число столбцов первой матрицы должно быть равно числу строк второй!");
 
 
             //Умножение по принципу: строка на столбец
-            for (int i = 0; i <  matrix1.GetLength(0); i++)
+            for (int i = 0; i < matrix1.GetLength(0); i++)
             {
                 for (int j = 0; j < matrix2.GetLength(1); j++)
                 {
-                    int sum = 0; 
+                    int sum = 0;
 
                     //Создадим цикл, который будет считать значения в каждой ячейке (здесь k - это количество столбцов первой и строк второй)
                     for (int k = 0; k < matrix1.GetLength(1); k++)
@@ -159,8 +157,8 @@ namespace DZ5
                         sum += matrix1[i, k] * matrix2[k, j];
                     }
                     matrix[i, j] = sum;
-                } 
-                    
+                }
+
             }
             return matrix;
         }
@@ -170,20 +168,21 @@ namespace DZ5
         {
             int[,] temperature = new int[12, 30];
             RandomMatrix(temperature, 12, 30, -30, 30);
-            PrintMatrix(temperature);
+            PrintMatrix("Таблица температур", temperature);
 
             double[] array = AverageTemp(temperature);
 
-            Console.WriteLine("Средняя температура месяцев:");
-            for (int i = 0; i <  array.Length; i++)
+            Console.WriteLine($"\nСредняя температура месяцев:");
+            for (int i = 0; i < array.Length; i++)
             {
                 Console.WriteLine($"Месяц {i + 1}: {array[i]:F1} градусов");
             }
-            
+
             Array.Sort(array); //метод, сортирующий массив по возрастанию
+            
             foreach (var item in array)
             {
-                Console.Write($"{item:F1} ");
+                Console.Write($"\n{item:F1} ");
             }
         }
 
@@ -199,11 +198,11 @@ namespace DZ5
             {
                 int sum = 0;
 
-                for (int j = 0;j < matrix.GetLength(1); j++ )
+                for (int j = 0; j < matrix.GetLength(1); j++)
                 {
                     sum += matrix[i, j];
                 }
-                array[i] = (double)sum/ matrix.GetLength(1);
+                array[i] = (double)sum / matrix.GetLength(1);
 
             }
             return array;
@@ -214,21 +213,21 @@ namespace DZ5
         {
             if (!File.Exists(filePath))
             {
-                Console.WriteLine($"\"Ошибка: Файл не найден по пути: {filePath}");
+                Console.WriteLine($"Ошибка: Файл не найден по пути: {filePath}");
                 return;
             }
             var readedText = File.ReadAllText(filePath);
 
             List<char> list = new List<char>();
 
-            foreach ( var item in readedText )
+            foreach (var item in readedText)
             {
                 list.Add(item);
             }
 
             (int vowels, int consonants) = CountLetters(list);
 
-            Console.WriteLine($"Количество гласных: {vowels}\nКоличество согласных: {consonants}\n");
+            Console.WriteLine($"\n\nКоличество гласных: {vowels}\nКоличество согласных: {consonants}\n");
         }
 
         #region
@@ -242,7 +241,7 @@ namespace DZ5
             var consonants = 0;
 
             var vowelsString = "уеыаёоэяию";
- 
+
             foreach (char lett in list)
             {
                 if (char.IsLetter(lett))
@@ -256,102 +255,92 @@ namespace DZ5
 
             return (vowels, consonants);
         }
-           
+
         #endregion
 
-        private static void HomeWork2()
+
+
+        private static void HomeWork3()
         {
-            Console.WriteLine("Количество столбцов первой матрицы должно быть равно количеству строк второй");
+            Dictionary<string, int[]> temperatures = new Dictionary<string, int[]>();
 
-            int str1 = Helper.ReadInt("Введите количество строк первой матрицы: ");
-            int column1 = Helper.ReadInt("Введите количество столбцов первой матрицы: ");
+            string[] months = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
 
-            int str2 = Helper.ReadInt("Введите количество строк второй матрицы: ");
-            int column2 = Helper.ReadInt("Введите количество столбцов второй матрицы: ");
+            Random random = new Random();
 
-            int min = Helper.ReadInt("Введите минимальное значение ячейки матрицы");
-            int max = Helper.ReadInt("Введите максимальное значение ячейки матрицы");
+            //Проходим по каждому месяцу и заполняем дни температурами
+            foreach (string month in months)
+            {
+                //Создаем массив на 30 дней
+                int[] days = new int[30];
 
-            LinkedList<LinkedList<int>> matrix1 = RandomMatrix(str1, column1, min, max);
-            LinkedList<LinkedList<int>> matrix2 = RandomMatrix(str2, column2, min, max);
+                //Заполняем его температурами
+                for (int i = 0; i < days.Length; i++)
+                {
+                    days[i] = random.Next(-30, 30);
+                }
+
+                //Добавляем массив температур за месяц к массиву месяцев
+                temperatures.Add(month, days);
+            }
+
+            Dictionary<string, double> average = AverageTemp(temperatures);
+            PrintSortedAverageTemp(average);
         }
 
         #region
         ///<summary>
-        ///Сощдает и заполняет случайными числами матрицу
-        ///перегрузка
+        ///Метод, который считает среднюю температуру и возвращает коллекцию 
         ///</summary>
-        private static LinkedList<LinkedList<int>> RandomMatrix(int strs, int column, int min, int max)
+        private static Dictionary<string, double> AverageTemp(Dictionary<string, int[]> temperatures)
         {
-            //Создаем внешний список строк
-            LinkedList<LinkedList<int>> matrix = new LinkedList<LinkedList<int>>();
+            Dictionary<string, double> averageTemp = new Dictionary<string, double>();
 
-            Random random = new Random();
-
-            for (int i = 0; i < strs; i++)
+            //Проходим по паре: ключ + значение
+            foreach (var pair in temperatures)
             {
-                //С помощью цикла присоединяем к внешнему списку внутренний
-                LinkedList<int> str = new LinkedList<int>();
+                string monthName = pair.Key;
+                int[] monthTemp = pair.Value;
 
-                for (int j = 0; j < column; j++)
+                int sum = 0;
+
+                foreach (var temp in monthTemp)
                 {
-                    //Добавляем случайное число в конец строки
-                    str.AddLast(random.Next(min, max + 1));
+                    sum += temp;
                 }
-                //Добавляем строку в матрицу
-                matrix.AddLast(str);
+
+                double average = (double)sum / monthTemp.Length;
+
+                averageTemp.Add(monthName, average);
             }
 
-            return matrix;
+            return averageTemp;
         }
 
         ///<summary>
-        ///Метод, который печатает матрицу (коллекция)
-        ///перегрузка
+        ///Метод, который сортирует и выводит коллекцию
         ///</summary>
-        private static void PrintMatrix(LinkedList<LinkedList<int>> matrix)
+        private static void PrintSortedAverageTemp(Dictionary<string, double> average)
         {
-            //Проходит по каждой строке из коллекции
-            foreach (LinkedList<int> str in matrix)
+            Console.WriteLine("Средняя температура по месяцам:");
+
+            foreach (var pair in average)
             {
-                //Проходит по каждому значению строки
-                foreach (int item in str)
-                {
-                    Console.Write($"{item} ");
-                }
-                Console.WriteLine();
+                Console.WriteLine($"{pair.Key}: {pair.Value:F1}°C");
             }
-        }
 
-        ///<summary>
-        ///Метод, который
-        ///</summary>
+            //Превращаем коллекцию в массив
+            double[] temps = average.Values.ToArray();
 
-        ///<summary>
-        ///Метод, который умножает матрицы (коллекции)
-        ///перегрузка
-        ///</summary>
-        private static LinkedList<LinkedList<int>> MultMatrix(LinkedList<LinkedList<int>> matrix1, LinkedList<LinkedList<int>> matrix2, int strs, int columns)
-        {
-            var matrix = new LinkedList<LinkedList<int>>();
+            Array.Sort(temps);
 
-            for (int i = 0; i < strs; i++)
+            Console.WriteLine($"\nСредние температуры по возрастанию:");
+            foreach (double temp in temps)
             {
-                var str = new LinkedList<int>();
-                for (int j = 0; j < columns; j++)
-                {
-                    str.AddLast(0); // Заполняем нулями
-                }
-                matrix.AddLast(str);
-
+                Console.WriteLine($"{temp:F1}");
             }
         }
         #endregion
-
-        private static void HomeWork3()
-        {
-
-        }
     }
 }
 

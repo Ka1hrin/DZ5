@@ -8,11 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Текс для номера 6.1\testFile.txt" />
+    <None Remove="Текст для номера 6.1\testFile.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Текс для номера 6.1\testFile.txt">
+    <Content Include="Текст для номера 6.1\testFile.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
