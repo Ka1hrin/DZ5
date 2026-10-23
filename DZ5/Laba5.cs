@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 
@@ -20,12 +21,13 @@ namespace DZ5
             Task3();
 
             HomeWork1(filePath);
-            //Не успела(
+            HomeWork2();
             HomeWork3();
         }
 
         static void Task1(string filePath)
         {
+            Console.WriteLine("Упражнение 6.1");
             //Проверка файла на существование? 
             if (!File.Exists(filePath))
             {
@@ -73,7 +75,8 @@ namespace DZ5
 
         static void Task2()
         {
-            Console.WriteLine("Количество столбцов первой матрицы должно быть равно количеству строк второй");
+            Console.WriteLine("Упражнение 6.2\n\nКоличество столбцов первой матрицы должно быть равно количеству строк второй");
+
             int str1 = Helper.ReadInt("Введите количество строк первой матрицы: ");
             int column1 = Helper.ReadInt("Введите количество столбцов первой матрицы: ");
 
@@ -166,6 +169,8 @@ namespace DZ5
 
         private static void Task3()
         {
+            Console.WriteLine("Упражнение 6.3");
+
             int[,] temperature = new int[12, 30];
             RandomMatrix(temperature, 12, 30, -30, 30);
             PrintMatrix("Таблица температур", temperature);
@@ -211,6 +216,8 @@ namespace DZ5
 
         private static void HomeWork1(string filePath)
         {
+            Console.WriteLine("Домашнее задание 6.1");
+
             if (!File.Exists(filePath))
             {
                 Console.WriteLine($"Ошибка: Файл не найден по пути: {filePath}");
@@ -258,10 +265,170 @@ namespace DZ5
 
         #endregion
 
+        private static void HomeWork2()
+        {
+            Console.WriteLine("Домашнее задание 6.2");
 
+            //LinkedList<LinkedList<T>> - внешний LinkedList хранит в себе узлы, которые хранят какие-то значения ( можно представить, что узлы - строки, в которых хранятся значения)
+            //Количество столбцов первой матрицы должно быть равно количеству строк второй
+            //сначала строки, потом столбцы
+            int str1 = Helper.ReadInt("Введите количество строк первой матрицы: ");
+            int col1 = Helper.ReadInt("Введите количество столбцов первой матрицы: ");
+
+            int str2 = Helper.ReadInt("Введите количество строк второй матрицы: ");
+            int col2 = Helper.ReadInt("Введите количество столбцов второй матрицы: ");
+
+            LinkedList<LinkedList<int>> matrix1 = RandomCollection(str1, col1);
+            LinkedList<LinkedList<int>> matrix2 = RandomCollection(str2, col2);
+
+            PrintCollection(matrix1);
+            PrintCollection(matrix2);
+
+            LinkedList<LinkedList<int>> matrix = MultCollection(matrix1, matrix2);
+
+            PrintCollection(matrix);
+
+        }
+
+        #region
+        /// <summary>
+        /// Метод, который заполняет матрицу случайными числами
+        /// </summary>
+        private static LinkedList<LinkedList<int>> RandomCollection(int strs, int cols)
+        {
+            Random random = new Random();
+
+            //Создаем матрицу, которую собираемся заполнять
+            LinkedList<LinkedList<int>> matrix = new LinkedList<LinkedList<int>>();
+
+            for (int i = 0; i < strs; i++)
+            {
+                //Создаем строку, которую собираемся заполнить
+                LinkedList<int> str = new LinkedList<int>();
+
+                for (int j = 0; j < cols; j++)
+                {
+                    str.AddLast(random.Next(0, 100));
+                }
+                matrix.AddLast(str);
+            }
+            
+            return matrix;
+
+        }
+
+        /// <summary>
+        /// Метод, который печатает матрицу
+        /// </summary>
+        private static void PrintCollection(LinkedList<LinkedList<int>> matrix)
+        {
+            foreach (LinkedList<int> str in matrix)
+            {
+                foreach (int col in str)
+                {
+                    Console.Write($"{col} ");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        /// <summary>
+        /// Метод, который умножает две матрицы
+        /// </summary>
+        private static LinkedList<LinkedList<int>> MultCollection(LinkedList<LinkedList<int>> matrix1,  LinkedList<LinkedList<int>> matrix2)
+        {
+            //необходимо просуммировать первая строка умножается на 1 столбик
+            //Создаем матрицу, которую будем заполнять
+            //В новой матрице будет количество строк первой и количество столбцов второй
+
+            int str1 = matrix1.Count; //Считает количество узлов матрицы
+            int col1 = matrix1.First.Value.Count; //Берет первый узел и считает, сколько в нем элементов
+            int str2 = matrix2.Count;
+            int col2 = matrix2.First.Value.Count;
+
+            if (str2 != col1)
+                throw new ArgumentException("Число столбцов первой матрицы должно быть равно числу строк второй!");
+
+            LinkedList<LinkedList<int>> matrix = new LinkedList<LinkedList<int>>();
+
+            for (int i  = 0; i < str1; i++ )
+            {
+                LinkedList<int> str = new LinkedList<int>();
+
+                for (int j = 0; j < col2; j++ )
+                {
+                    str.AddLast(0);
+                }
+                matrix.AddLast(str);
+            }
+
+            int iIndex = 0; //счетчик строк
+
+            foreach (LinkedList<int> strA in matrix1)
+            {
+                
+                //Проходим по каждому элементу строки
+                for (int j = 0; j < col2; j++ )
+                {
+                    int sum = 0; 
+                    int kIndex = 0;
+
+                    foreach (LinkedList<int> colB in matrix2)
+                    {
+                        //Достаем элементы, которые собираемся перемножать
+                        int num1 = Element(strA, kIndex);
+                        int num2 = Element(colB, j);
+
+                        sum += num1 * num2;
+
+                        kIndex++;
+                    }
+
+                    //Записываем полученное значение в матрицу 
+                    //LinkedListNode - мы встаем на 1 строку
+                    LinkedListNode<LinkedList<int>> matrixStr = matrix.First;
+
+                    //Теперь проходим по строкам и столбцам, чтобы перезаписать значение
+                    for (int step = 0; step < iIndex;  step++)
+                    {
+                        matrixStr = matrixStr.Next; //Здесь мы переходим на следующую строку
+                    }
+
+                    LinkedListNode<int> matrixCol = matrixStr.Value.First;
+                    for (int step = 0; step < j; step++)
+                    {
+                        matrixCol = matrixCol.Next;
+                    }
+
+                    matrixCol.Value = sum;
+                }
+                iIndex++;
+            }
+            return matrix;
+
+        }
+
+        /// <summary>
+        /// Вспомогательный метод для умножения: поиск индекса элемента
+        /// на вход даем строку матрицы и номер индекса, значения которого хотим найти
+        /// </summary>
+        private static int Element(LinkedList<int> str, int index)
+        {
+            //Создаем переменную со значением первого индекса и цикл, который проходит по строке, пока не дойдет до индекса
+            var num = str.First;
+
+            for (int i = 0; i < index; i++)
+            {
+                num = num.Next; 
+            }
+            return num.Value; //Достаем значение из узла
+        }
+        #endregion
 
         private static void HomeWork3()
         {
+            Console.WriteLine("Домашнее задание 6.3");
+
             Dictionary<string, int[]> temperatures = new Dictionary<string, int[]>();
 
             string[] months = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
